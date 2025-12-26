@@ -1,113 +1,94 @@
 ---
-const steps = [
-    {
-        title: "Upload your ad via our platform",
-        desc: "Simply upload your creative in just a few clicks.",
-    },
-    {
-        title: "Your ad runs every 5 minutes",
-        desc: "Reach your customer frequently without being intrusive.",
-    },
-    {
-        title: "Nonstop ad rotation",
-        desc: "Keeps your content fresh and engaging all day long.",
-    },
-    {
-        title: "Update or change creatives anytime",
-        desc: "Refresh your message instantly whenever you want.",
-    },
-];
+import type { CollectionEntry } from "astro:content";
+
+type Props = CollectionEntry<"pages">["data"]["howItWorks"];
+
+const { label, title, image, steps } = Astro.props as Props;
 ---
 
 <section class="py-20 px-6 md:px-12 max-w-7xl mx-auto">
-    <div class="bg-blue-600 rounded-3xl p-8 md:p-16 relative overflow-hidden">
-        <!-- Background Circles -->
-        <div
-            class="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-50 translate-x-1/2 -translate-y-1/2"
-        >
-        </div>
-
-        <div class="relative z-10">
-            <div class="text-center mb-12">
-                <span
-                    class="text-blue-200 font-semibold uppercase tracking-wider text-sm"
-                    >HOW IT WORKS</span
-                >
-                <h2
-                    class="text-3xl md:text-5xl font-bold mt-2 font-outfit text-white"
-                >
-                    How AdVerse Works
-                </h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="relative hiw-image opacity-0 translate-y-8">
-                    <div
-                        class="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl overflow-hidden shadow-2xl transform rotate-[-2deg] hover:rotate-0 transition-transform duration-500"
-                    >
-                        <img
-                            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2670&auto=format&fit=crop"
-                            alt="How it works"
-                            class="w-full h-auto object-cover"
-                        />
-                    </div>
-                </div>
-
-                <div class="space-y-8">
-                    {
-                        steps.map((step, index) => (
-                            <div class="hiw-step flex gap-4 opacity-0 translate-x-8">
-                                <div class="w-8 h-8 shrink-0 bg-white rounded-full flex items-center justify-center text-blue-600 font-bold text-sm shadow-md">
-                                    {/* Using generic icon for steps as seen in design, or can use numbers/specific icons */}
-                                    <svg
-                                        class="w-4 h-4"
-                                        fill="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold font-outfit text-white mb-2">
-                                        {step.title}
-                                    </h4>
-                                    <p class="text-blue-100">{step.desc}</p>
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
-        </div>
+  <div class="bg-blue-600 rounded-3xl p-8 md:p-16 relative overflow-hidden">
+    <!-- Background Circles -->
+    <div
+      class="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-50 translate-x-1/2 -translate-y-1/2"
+    >
     </div>
+
+    <div class="relative z-10">
+      <div class="text-center mb-12">
+        <span
+          class="text-blue-200 font-semibold uppercase tracking-wider text-sm"
+          >{label}</span
+        >
+        <h2 class="text-3xl md:text-5xl font-bold mt-2 font-outfit text-white">
+          {title}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="relative hiw-image opacity-0 translate-y-8">
+          <div
+            class="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl overflow-hidden shadow-2xl transform rotate-[-2deg] hover:rotate-0 transition-transform duration-500"
+          >
+            <img
+              src={image}
+              alt="How it works"
+              class="w-full h-auto object-cover"
+            />
+          </div>
+        </div>
+
+        <div class="space-y-8">
+          {
+            steps.map((step, index) => (
+              <div class="hiw-step flex gap-4 opacity-0 translate-x-8">
+                <div class="w-8 h-8 shrink-0 bg-white rounded-full flex items-center justify-center text-blue-600 font-bold text-sm shadow-md">
+                  {/* Using generic icon for steps as seen in design, or can use numbers/specific icons */}
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-xl font-bold font-outfit text-white mb-2">
+                    {step.title}
+                  </h4>
+                  <p class="text-blue-100">{step.desc}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <script>
-    import { gsap } from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-    gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger);
 
-    gsap.to(".hiw-image", {
-        scrollTrigger: {
-            trigger: ".hiw-image",
-            start: "top 80%",
-        },
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power2.out",
-    });
+  gsap.to(".hiw-image", {
+    scrollTrigger: {
+      trigger: ".hiw-image",
+      start: "top 80%",
+    },
+    y: 0,
+    opacity: 1,
+    duration: 0.8,
+    ease: "power2.out",
+  });
 
-    gsap.to(".hiw-step", {
-        scrollTrigger: {
-            trigger: ".hiw-step",
-            start: "top 80%",
-        },
-        x: 0,
-        opacity: 1,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: "power2.out",
-    });
+  gsap.to(".hiw-step", {
+    scrollTrigger: {
+      trigger: ".hiw-step",
+      start: "top 80%",
+    },
+    x: 0,
+    opacity: 1,
+    duration: 0.6,
+    stagger: 0.15,
+    ease: "power2.out",
+  });
 </script>

@@ -1,151 +1,127 @@
 ---
-const stats = [
-    {
-        title: "High-Traffic Venues",
-        desc: "Placed in busy specialist places and every day.",
-        icon: "map-pin",
-    },
-    {
-        title: "Unstoppable Attention",
-        desc: "Viewability is captured as engagement rates rise.",
-        icon: "eye",
-    },
-    {
-        title: "Dynamic Activation",
-        desc: "Our systems allow live updates whenever intended.",
-        icon: "refresh-cw",
-    },
-    {
-        title: "Hyper-Local Targeting",
-        desc: "Reach the right audience in specific neighborhoods.",
-        icon: "target",
-    },
-];
+import type { CollectionEntry } from "astro:content";
+
+type Props = CollectionEntry<"pages">["data"]["stats"];
+
+const { label, title, highlight, description, items } = Astro.props as Props;
 ---
 
 <section class="py-20 px-6 md:px-12 max-w-7xl mx-auto">
-    <div class="mb-12">
-        <span
-            class="text-blue-500 font-semibold uppercase tracking-wider text-sm"
-            >WHY ADVERSE</span
-        >
-        <h2 class="text-3xl md:text-5xl font-bold mt-2 font-outfit">
-            Your Ad. Where People <span class="text-blue-500"
-                >Actually Look</span
-            >
-        </h2>
-        <p class="text-gray-400 mt-4 max-w-2xl">
-            Premium digital screens in cafes, salons, gyms and airports — where
-            audiences are present, waiting, and attentive.
-        </p>
-    </div>
+  <div class="mb-12">
+    <span class="text-blue-500 font-semibold uppercase tracking-wider text-sm"
+      >{label}</span
+    >
+    <h2 class="text-3xl md:text-5xl font-bold mt-2 font-outfit">
+      {title}
+      <span class="text-blue-500">{highlight}</span>
+    </h2>
+    <p class="text-gray-400 mt-4 max-w-2xl">
+      {description}
+    </p>
+  </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {
-            stats.map((stat) => (
-                <div class="stat-card bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-colors group opacity-0 translate-y-8">
-                    <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6 text-blue-400 group-hover:scale-110 transition-transform">
-                        {/* Icons */}
-                        {stat.icon === "map-pin" && (
-                            <svg
-                                class="w-6 h-6"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                                />
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                                />
-                            </svg>
-                        )}
-                        {stat.icon === "eye" && (
-                            <svg
-                                class="w-6 h-6"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                />
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                                />
-                            </svg>
-                        )}
-                        {stat.icon === "refresh-cw" && (
-                            <svg
-                                class="w-6 h-6"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                                />
-                            </svg>
-                        )}
-                        {stat.icon === "target" && (
-                            <svg
-                                class="w-6 h-6"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                                />
-                            </svg>
-                        )}
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 font-outfit">
-                        {stat.title}
-                    </h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        {stat.desc}
-                    </p>
-                </div>
-            ))
-        }
-    </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    {
+      items.map((stat) => (
+        <div class="stat-card bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-colors group opacity-0 translate-y-8">
+          <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6 text-blue-400 group-hover:scale-110 transition-transform">
+            {/* Icons */}
+            {stat.icon === "map-pin" && (
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+            )}
+            {stat.icon === "eye" && (
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+              </svg>
+            )}
+            {stat.icon === "refresh-cw" && (
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
+              </svg>
+            )}
+            {stat.icon === "target" && (
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            )}
+          </div>
+          <h3 class="text-xl font-bold mb-3 font-outfit">{stat.title}</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">{stat.desc}</p>
+        </div>
+      ))
+    }
+  </div>
 </section>
 
 <script>
-    import { gsap } from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-    gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger);
 
-    gsap.to(".stat-card", {
-        scrollTrigger: {
-            trigger: ".stat-card",
-            start: "top 80%",
-        },
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power2.out",
-    });
+  gsap.to(".stat-card", {
+    scrollTrigger: {
+      trigger: ".stat-card",
+      start: "top 80%",
+    },
+    y: 0,
+    opacity: 1,
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out",
+  });
 </script>
