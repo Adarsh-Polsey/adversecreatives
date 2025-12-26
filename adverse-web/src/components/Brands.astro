@@ -1,0 +1,31 @@
+---
+const brands = [
+    "NTC",
+    "Bakery",
+    "Aqua",
+    "GameX",
+    "Location",
+    "Titan", // Placeholders matching style
+];
+---
+
+<section class="py-12 border-y border-white/5 bg-white/5">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 text-center">
+        <h3 class="text-xl font-semibold mb-8">
+            Brands we have <span class="text-blue-500">worked with</span>
+        </h3>
+
+        <div
+            class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500"
+        >
+            <!-- Simple Mock Logos -->
+            {
+                brands.map((brand) => (
+                    <div class="flex items-center justify-center w-24 h-12 bg-white/10 rounded-lg">
+                        <span class="font-bold text-lg">{brand}</span>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
