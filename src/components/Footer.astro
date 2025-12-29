@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 import footerFrame from "../assets/Footer/footer_frame.svg";
 import adverseLogo from "../assets/adverse-logo.svg";
 
-type Props = CollectionEntry<"pages">["data"]["footer"];
+type Props = NonNullable<CollectionEntry<"pages">["data"]["footer"]>;
 
 const {
   title,

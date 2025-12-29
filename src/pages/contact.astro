@@ -1,0 +1,145 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import contactBg from "../assets/contact_bg.svg";
+import { getEntry } from "astro:content";
+
+const indexEntry = await getEntry("pages", "index");
+const contactEntry = await getEntry("pages", "contact");
+
+if (!indexEntry || !contactEntry) {
+  return Astro.redirect("/404");
+}
+
+const { navbar, footer } = indexEntry.data;
+const { hero, contactSection, mapSection } = contactEntry.data as any;
+---
+
+<Layout>
+  {navbar && <Navbar {...navbar} />}
+
+  <main class="min-h-screen bg-gray-50">
+    <!-- Hero Section -->
+    {hero && <Hero {...hero} backgroundImage={contactBg} />}
+
+    <!-- Content Section -->
+    {
+      contactSection && (
+        <section class="max-w-7xl mx-auto px-4 md:px-12 py-20">
+          <div class="grid lg:grid-cols-2 gap-8 lg:gap-24 items-start">
+            {/* Left Column: Title & Description */}
+            <div>
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                {contactSection.title}
+                <span class="text-[#3253CC]">{contactSection.highlight}</span>
+              </h2>
+              <p class="text-gray-500 mb-8 max-w-md text-base leading-relaxed">
+                {contactSection.description}
+              </p>
+            </div>
+
+            {/* Right Column: Contact Cards */}
+            <div class="space-y-4">
+              {/* Phone Cards */}
+              {contactSection.phones?.map((phone: any) => (
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-5">
+                  <div class="w-12 h-12 bg-blue-50/50 rounded-xl flex items-center justify-center text-[#3253CC]">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.14 11.23 11.23 0 003.5.56 1 1 0 011 1v3.5a1 1 0 01-1 1A16 16 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.23 11.23 0 00.56 3.5 1 1 0 01-.14 1.11l-2.2 2.18z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-400 font-medium mb-0.5">
+                      {phone.label}
+                    </p>
+                    <p class="font-bold text-gray-900 text-lg">
+                      {phone.number}
+                    </p>
+                  </div>
+                </div>
+              ))}
+
+              {/* Email Cards */}
+              {contactSection.emails?.map((email: any) => (
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-5">
+                  <div class="w-12 h-12 bg-blue-50/50 rounded-xl flex items-center justify-center text-[#3253CC]">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
+                      <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-400 font-medium mb-0.5">
+                      {email.label}
+                    </p>
+                    <p class="font-bold text-gray-900 text-lg">
+                      {email.address}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Map Section -->
+    {
+      mapSection && (
+        <section class="py-20 bg-white">
+          <div class="max-w-7xl mx-auto px-4 md:px-12 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {mapSection.title}
+              <span class="text-[#3253CC]">{mapSection.highlight}</span>
+            </h2>
+            <p class="text-gray-500 max-w-2xl mx-auto mb-12">
+              {mapSection.description}
+            </p>
+
+            {/* Map Container */}
+            <div class="w-full h-[400px] rounded-2xl overflow-hidden shadow-lg border border-gray-200 relative mb-8">
+              <iframe
+                src={
+                  footer?.mapEmbedUrl ||
+                  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124440.35416041187!2d77.53427907579899!3d12.919245595914565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15632a76f235%3A0xe2ec7d610a232399!2sSilk%20Board%20Office!5e0!3m2!1sen!2sin!4v1714402633000!5m2!1sen!2sin"
+                }
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              />
+              <button class="absolute bottom-4 right-4 bg-white text-gray-700 px-4 py-2 rounded shadow-md text-sm font-semibold hover:bg-gray-50">
+                View larger map
+              </button>
+            </div>
+
+            {/* Locations List */}
+            <div class="flex flex-wrap justify-center gap-4">
+              {mapSection.locations?.map((loc: string) => (
+                <div class="bg-blue-50/50 py-3 px-8 rounded-lg text-[#3253CC] font-semibold text-sm md:text-base border border-blue-100">
+                  {loc}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+  </main>
+  {footer && <Footer {...footer} />}
+</Layout>

@@ -19,14 +19,14 @@ export default defineStackbitConfig({
               name: "navbar",
               type: "object",
               fields: [
-                { name: "brand", type: "string", required: true },
-                { name: "subBrand", type: "string", required: true },
+                { name: "brand", type: "string", required: false },
+                { name: "subBrand", type: "string", required: false },
                 {
                   name: "contactButton",
                   type: "object",
                   fields: [
-                    { name: "text", type: "string", required: true },
-                    { name: "link", type: "string", required: true },
+                    { name: "text", type: "string", required: false },
+                    { name: "link", type: "string", required: false },
                   ],
                 },
               ],
@@ -35,22 +35,22 @@ export default defineStackbitConfig({
               name: "hero",
               type: "object",
               fields: [
-                { name: "title", type: "string", required: true },
-                { name: "highlight", type: "string", required: true },
-                { name: "description", type: "string", required: true },
+                { name: "title", type: "string", required: false },
+                { name: "highlight", type: "string", required: false },
+                { name: "description", type: "string", required: false },
                 {
                   name: "buttons",
                   type: "list",
                   items: {
                     type: "object",
                     fields: [
-                      { name: "text", type: "string", required: true },
-                      { name: "link", type: "string", required: true },
+                      { name: "text", type: "string", required: false },
+                      { name: "link", type: "string", required: false },
                       {
                         name: "variant",
                         type: "enum",
                         options: ["primary", "secondary"],
-                        required: true,
+                        required: false,
                       },
                     ],
                   },
@@ -61,9 +61,9 @@ export default defineStackbitConfig({
                   items: {
                     type: "object",
                     fields: [
-                      { name: "icon", type: "string", required: true },
-                      { name: "color", type: "string", required: true },
-                      { name: "position", type: "string", required: true },
+                      { name: "icon", type: "string", required: false },
+                      { name: "color", type: "string", required: false },
+                      { name: "position", type: "string", required: false },
                     ],
                   },
                 },
@@ -73,19 +73,19 @@ export default defineStackbitConfig({
               name: "stats",
               type: "object",
               fields: [
-                { name: "label", type: "string", required: true },
-                { name: "title", type: "string", required: true },
-                { name: "highlight", type: "string", required: true },
-                { name: "description", type: "string", required: true },
+                { name: "label", type: "string", required: false },
+                { name: "title", type: "string", required: false },
+                { name: "highlight", type: "string", required: false },
+                { name: "description", type: "string", required: false },
                 {
                   name: "items",
                   type: "list",
                   items: {
                     type: "object",
                     fields: [
-                      { name: "title", type: "string", required: true },
-                      { name: "desc", type: "string", required: true },
-                      { name: "icon", type: "string", required: true },
+                      { name: "title", type: "string", required: false },
+                      { name: "desc", type: "string", required: false },
+                      { name: "icon", type: "string", required: false },
                     ],
                   },
                 },
@@ -95,11 +95,11 @@ export default defineStackbitConfig({
               name: "showcase",
               type: "object",
               fields: [
-                { name: "label", type: "string", required: true },
-                { name: "title", type: "string", required: true },
-                { name: "highlight", type: "string", required: true },
-                { name: "description", type: "string", required: true },
-                { name: "mainImage", type: "string", required: true }, // Should be image type, but keeping string as per schema z.string for now implies path string
+                { name: "label", type: "string", required: false },
+                { name: "title", type: "string", required: false },
+                { name: "highlight", type: "string", required: false },
+                { name: "description", type: "string", required: false },
+                { name: "mainImage", type: "string", required: false }, // Should be image type, but keeping string as per schema z.string for now implies path string
                 { name: "videoUrl", type: "string" },
                 { name: "rightImage", type: "string" },
                 {
@@ -108,7 +108,7 @@ export default defineStackbitConfig({
                   items: {
                     type: "object",
                     fields: [
-                      { name: "text", type: "string", required: true },
+                      { name: "text", type: "string", required: false },
                       { name: "icon", type: "string" },
                     ],
                   },
@@ -119,16 +119,16 @@ export default defineStackbitConfig({
               name: "brands",
               type: "object",
               fields: [
-                { name: "title", type: "string", required: true },
-                { name: "highlight", type: "string", required: true },
+                { name: "title", type: "string", required: false },
+                { name: "highlight", type: "string", required: false },
                 {
                   name: "list",
                   type: "list",
                   items: {
                     type: "object",
                     fields: [
-                      { name: "name", type: "string", required: true },
-                      { name: "logo", type: "string", required: true },
+                      { name: "name", type: "string", required: false },
+                      { name: "logo", type: "string", required: false },
                       { name: "link", type: "string" },
                     ],
                   },
@@ -139,17 +139,17 @@ export default defineStackbitConfig({
               name: "howItWorks",
               type: "object",
               fields: [
-                { name: "label", type: "string", required: true },
-                { name: "title", type: "string", required: true },
-                { name: "image", type: "string", required: true },
+                { name: "label", type: "string", required: false },
+                { name: "title", type: "string", required: false },
+                { name: "image", type: "string", required: false },
                 {
                   name: "steps",
                   type: "list",
                   items: {
                     type: "object",
                     fields: [
-                      { name: "title", type: "string", required: true },
-                      { name: "desc", type: "string", required: true },
+                      { name: "title", type: "string", required: false },
+                      { name: "desc", type: "string", required: false },
                     ],
                   },
                 },
@@ -159,19 +159,19 @@ export default defineStackbitConfig({
               name: "features",
               type: "object",
               fields: [
-                { name: "label", type: "string", required: true },
-                { name: "title", type: "string", required: true },
-                { name: "highlight", type: "string", required: true },
-                { name: "description", type: "string", required: true },
+                { name: "label", type: "string", required: false },
+                { name: "title", type: "string", required: false },
+                { name: "highlight", type: "string", required: false },
+                { name: "description", type: "string", required: false },
                 {
                   name: "items",
                   type: "list",
                   items: {
                     type: "object",
                     fields: [
-                      { name: "title", type: "string", required: true },
-                      { name: "img", type: "string", required: true },
-                      { name: "icon", type: "string", required: true },
+                      { name: "title", type: "string", required: false },
+                      { name: "img", type: "string", required: false },
+                      { name: "icon", type: "string", required: false },
                     ],
                   },
                 },
@@ -181,16 +181,16 @@ export default defineStackbitConfig({
               name: "footer",
               type: "object",
               fields: [
-                { name: "title", type: "string", required: true },
-                { name: "subtitle", type: "string", required: true },
-                { name: "companyName", type: "string", required: true },
-                { name: "companyDesc", type: "string", required: true },
+                { name: "title", type: "string", required: false },
+                { name: "subtitle", type: "string", required: false },
+                { name: "companyName", type: "string", required: false },
+                { name: "companyDesc", type: "string", required: false },
                 {
                   name: "contact",
                   type: "object",
                   fields: [
-                    { name: "phone", type: "string", required: true },
-                    { name: "email", type: "string", required: true },
+                    { name: "phone", type: "string", required: false },
+                    { name: "email", type: "string", required: false },
                   ],
                 },
                 {
@@ -199,13 +199,13 @@ export default defineStackbitConfig({
                   items: {
                     type: "object",
                     fields: [
-                      { name: "text", type: "string", required: true },
-                      { name: "link", type: "string", required: true },
+                      { name: "text", type: "string", required: false },
+                      { name: "link", type: "string", required: false },
                       {
                         name: "variant",
                         type: "enum",
                         options: ["primary", "secondary"],
-                        required: true,
+                        required: false,
                       },
                     ],
                   },
@@ -214,11 +214,56 @@ export default defineStackbitConfig({
                   name: "socials",
                   type: "object",
                   fields: [
-                    { name: "linkedin", type: "string", required: true },
-                    { name: "facebook", type: "string", required: true },
+                    { name: "linkedin", type: "string", required: false },
+                    { name: "facebook", type: "string", required: false },
                   ],
                 },
                 { name: "mapEmbedUrl", type: "string" },
+                {
+                  name: "contactSection",
+                  type: "object",
+                  fields: [
+                    { name: "title", type: "string", required: false },
+                    { name: "highlight", type: "string", required: false },
+                    { name: "description", type: "string", required: false },
+                    {
+                      name: "phones",
+                      type: "list",
+                      items: {
+                        type: "object",
+                        fields: [
+                          { name: "label", type: "string", required: false },
+                          { name: "number", type: "string", required: false },
+                        ],
+                      },
+                    },
+                    {
+                      name: "emails",
+                      type: "list",
+                      items: {
+                        type: "object",
+                        fields: [
+                          { name: "label", type: "string", required: false },
+                          { name: "address", type: "string", required: false },
+                        ],
+                      },
+                    },
+                  ],
+                },
+                {
+                  name: "mapSection",
+                  type: "object",
+                  fields: [
+                    { name: "title", type: "string", required: false },
+                    { name: "highlight", type: "string", required: false },
+                    { name: "description", type: "string", required: false },
+                    {
+                      name: "locations",
+                      type: "list",
+                      items: { type: "string" },
+                    },
+                  ],
+                },
               ],
             },
           ],

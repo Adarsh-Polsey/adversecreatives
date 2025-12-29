@@ -22,14 +22,14 @@ const { hero, stats, showcase, brands, howItWorks, features, footer, navbar } =
 ---
 
 <Layout>
-  <Navbar {...navbar} />
+  {navbar && <Navbar {...navbar} />}
   <main class="overflow-hidden">
-    <Hero {...hero} />
-    <Stats {...stats} />
-    <Showcase {...showcase} />
-    <Brands {...brands} />
-    <HowItWorks {...howItWorks} />
-    <Features {...features} />
+    {hero && <Hero {...hero} />}
+    {stats && <Stats {...stats} />}
+    {showcase && <Showcase {...showcase} />}
+    {brands && <Brands {...brands} />}
+    {howItWorks && <HowItWorks {...howItWorks} />}
+    {features && <Features {...features} />}
   </main>
-  <Footer {...footer} />
+  {footer && <Footer {...footer} />}
 </Layout>

@@ -2,16 +2,11 @@
 import { Image } from "astro:assets";
 import adverseLogo from "../assets/adverse-logo.svg";
 
-interface Props {
-  brand: string;
-  subBrand: string;
-  contactButton: {
-    text: string;
-    link: string;
-  };
-}
+import type { CollectionEntry } from "astro:content";
 
-const { brand, subBrand, contactButton } = Astro.props;
+type Props = NonNullable<CollectionEntry<"pages">["data"]["navbar"]>;
+
+const { brand, subBrand, contactButton } = Astro.props as Props;
 ---
 
 <nav

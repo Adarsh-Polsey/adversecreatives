@@ -6,7 +6,7 @@ import icon2 from "../assets/stats/2.svg";
 import icon3 from "../assets/stats/3.svg";
 import icon4 from "../assets/stats/4.svg";
 
-type Props = CollectionEntry<"pages">["data"]["stats"];
+type Props = NonNullable<CollectionEntry<"pages">["data"]["stats"]>;
 
 const { label, title, highlight, description, items } = Astro.props as Props;
 

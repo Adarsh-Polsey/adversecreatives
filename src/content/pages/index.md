@@ -1,10 +1,10 @@
 ---
 navbar:
   brand: "AdVerse"
-  subBrand: "Creators"
+  subBrand: "Creatives"
   contactButton:
     text: "CONTACT US"
-    link: "https://wa.me/+919188232874?text=Hello%20I%20would%20love%20to%20know%20more%20about%20Adverse"
+    link: "/contact"
 
 hero:
   title: "While They Wait."
